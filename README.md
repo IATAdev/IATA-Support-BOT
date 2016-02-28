@@ -4,7 +4,7 @@ Questo bot è stato creato per ovviare a delle funzioni amministrative all'intern
 Questo software è coperto da licenza BSD semplificata (a-là FreeBSD) consultabile dal sorgente del bot stesso: [iatabot.rb](https://github.com/IATAdev/IATAreportbot/blob/master/iatabot.rb).
 
 ##A cosa serve?
-IATAreportbot è un bot Telegram API scritto in Ruby. Tiene conto delle segnalazioni degli utenti in caso di abuso, richiesta di aggiunta di un gruppo oppure per ottenere il link del canale delle notizie.
+IATAreportbot è un bot Telegram API scritto in Ruby. Tiene conto delle segnalazioni degli utenti in caso di abuso, accetta le richieste di aggiunta di un gruppo nello IATA oppure restituisce il link del canale delle notizie.
 
 * * *
 
@@ -24,6 +24,7 @@ Questa è la lista:
 
 ##Prerequisiti
 **Devi** avere una versione di Ruby recente (testato su 2.1.5).
+
 **Devi** aver installato le gems [telegram_bot](https://github.com/eljojo/telegram_bot) e YAML.
 
 **Prima di eseguirlo:**
