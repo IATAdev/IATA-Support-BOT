@@ -1,7 +1,7 @@
 #IATAreportbot
 Questo bot è stato creato per ovviare a delle funzioni amministrative all'interno dello IATA.
 
-Questo software è coperto da licenza BSD semplificata (a-là FreeBSD) consultabile dal sorgente del bot stesso: [iatabot.rb](https://github.com/IATAdev/IATAreportbot/iatabot.rb).
+Questo software è coperto da licenza BSD semplificata (a-là FreeBSD) consultabile dal sorgente del bot stesso: [iatabot.rb](https://github.com/IATAdev/IATAreportbot/blob/master/iatabot.rb).
 
 ##A cosa serve?
 IATAreportbot è un bot Telegram API scritto in Ruby. Tiene conto delle segnalazioni degli utenti in caso di abuso, richiesta di aggiunta di un gruppo oppure per ottenere il link del canale delle notizie.
@@ -41,6 +41,6 @@ Puoi anche eseguirlo con `ruby iatabot.rb`, ma in caso di errore non si riavvier
 ##Sviluppatori
 Chiunque può contribuire a questo progetto.
 
-Il bot è sviluppato da [LucentW](https://github.com/LucentW). Puoi conttarlo via [Telegram](https://telegram.me/LucentW), [Twitter](https://twitter.com/lucentw), o [IRC](irc://irc.darkspirit.org/) con il nick Lucent.
+Il bot è sviluppato da [LucentW](https://github.com/LucentW). Puoi conttarlo via [Telegram](https://telegram.me/LucentW), [Twitter](https://twitter.com/lucentw), o su IRC (irc.darkspirit.org, irc.azzurra.org) dove lo troverai con il nick Lucent.
 
 Per altre informazioni, contattare il responsabile del progetto [lollofra](https://github.com/lollofra) via [Telegram](https://telegram.me/lollofra) o [Twitter](https://twitter.com/Lorenzo_Fiocco).
