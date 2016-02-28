@@ -1,15 +1,15 @@
-#IATAreportbot
-Questo bot Ë stato creato per ovviare a delle funzioni amministrative all'interno dello IATA.
+#IATA Support BOT
+Questo bot √® stato creato per ovviare a delle funzioni amministrative all'interno dello IATA.
 
-Questo software Ë coperto da licenza BSD semplificata (a-l‡ FreeBSD) consultabile dal sorgente del bot stesso: [iatabot.rb](https://github.com/IATAdev/IATAreportbot/blob/master/iatabot.rb).
+Questo software √® coperto da licenza BSD semplificata (a-l√† FreeBSD) consultabile dal sorgente del bot stesso: [iatabot.rb](https://github.com/IATAdev/IATAreportbot/blob/master/iatabot.rb).
 
 ##A cosa serve?
-IATAreportbot Ë un bot Telegram API scritto in Ruby. Tiene conto delle segnalazioni degli utenti in caso di abuso, accetta le richieste di aggiunta di un gruppo nello IATA oppure restituisce il link del canale delle notizie.
+IATA Support BOT √® un bot Telegram API scritto in Ruby. Tiene conto delle segnalazioni degli utenti in caso di abuso, accetta le richieste di aggiunta di un gruppo nello IATA oppure restituisce il link del canale delle notizie.
 
 * * *
 
 ##Comandi previsti
-Questa Ë la lista:
+Questa √® la lista:
 
 | Comando | Funzione |
 |---------|----------|
@@ -29,19 +29,19 @@ Questa Ë la lista:
 
 **Prima di eseguirlo:**
 
-> ï Imposta il token con quello ricevuto da [BotFather](http://telegram.me/BotFather).
+> ‚Ä¢ Imposta il token con quello ricevuto da [BotFather](http://telegram.me/BotFather).
 >
-> ï Esegui il bot, contattalo subito in privato e dai il comando `/setadmin`.
+> ‚Ä¢ Esegui il bot, contattalo subito in privato e dai il comando `/setadmin`.
 >
-> ï Configura il gruppo dove riversare le richieste invitando il bot e dando il comando `/setchan`.
+> ‚Ä¢ Configura il gruppo dove riversare le richieste invitando il bot e dando il comando `/setchan`.
 
 Per eseguire il bot, avvia `./iatabot.sh`. Per fermarlo, dai due volte CTRL+C.
 
-Puoi anche eseguirlo con `ruby iatabot.rb`, ma in caso di errore non si riavvier‡ da solo.
+Puoi anche eseguirlo con `ruby iatabot.rb`, ma in caso di errore non si riavvier√† da solo.
 
 ##Sviluppatori
-Chiunque puÚ contribuire a questo progetto.
+Chiunque pu√≤ contribuire a questo progetto.
 
-Il bot Ë sviluppato da [LucentW](https://github.com/LucentW). Puoi conttarlo via [Telegram](https://telegram.me/LucentW), [Twitter](https://twitter.com/lucentw), o su IRC (irc.darkspirit.org, irc.azzurra.org) dove lo troverai con il nick Lucent.
+Il bot √® sviluppato da [LucentW](https://github.com/LucentW). Puoi conttarlo via [Telegram](https://telegram.me/LucentW), [Twitter](https://twitter.com/lucentw), o su IRC (irc.darkspirit.org, irc.azzurra.org) dove lo troverai con il nick Lucent.
 
 Per altre informazioni, contattare il responsabile del progetto [lollofra](https://github.com/lollofra) via [Telegram](https://telegram.me/lollofra) o [Twitter](https://twitter.com/Lorenzo_Fiocco).
