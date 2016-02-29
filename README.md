@@ -1,7 +1,7 @@
 #IATA Support BOT
 Questo bot è stato creato per ovviare a delle funzioni amministrative all'interno dello IATA.
 
-Questo software è coperto da licenza BSD semplificata (a-là FreeBSD) consultabile dal sorgente del bot stesso: [iatabot.rb](https://github.com/IATAdev/IATAreportbot/blob/master/iatabot.rb).
+Questo software è coperto da licenza BSD semplificata (a-là FreeBSD) consultabile dal sorgente del bot stesso: [iatabot.rb](https://github.com/IATAdev/IATA-Support-BOT/blob/master/iatabot.rb).
 
 ##A cosa serve?
 IATA Support BOT è un bot Telegram API scritto in Ruby. Tiene conto delle segnalazioni degli utenti in caso di abuso, accetta le richieste di aggiunta di un gruppo nello IATA oppure restituisce il link del canale delle notizie.
