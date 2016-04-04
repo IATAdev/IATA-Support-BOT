@@ -53,13 +53,13 @@ bot.get_updates(fail_silently: true) do |message|
   
   message.reply do |reply|
     case command
-	when /\/start/i
+	when /^\/start/i
 	  reply.text = %{Benvenuto, i comandi che puoi usare con questo bot sono:
 /report - Segnala l'abuso di una persona/bot/chat
 /iscriviti - Proponi il tuo gruppo per essere incluso nello IATA
 /canale - Ottieni il link con le ultime news}
 
-	when /\/addadmin/i
+	when /^\/addadmin/i
 	  if admins == nil then
 	    admins = Hash.new
 		admins[message.from.id] = true
@@ -78,7 +78,7 @@ bot.get_updates(fail_silently: true) do |message|
 		end
 	  end
 	  
-	when /\/setchan/i
+	when /^\/setchan/i
 	  begin
 	    if admins[message.from.id] == true then
 	      File.open('channel.conf', 'w') {|f| f.write(YAML.dump(message.chat))}
@@ -91,7 +91,7 @@ bot.get_updates(fail_silently: true) do |message|
 		reply.text = "La struttura degli admin non è ancora stata inizializzata."
 	  end
 	  
-    when /\/report/i
+    when /^\/report/i
 	  if status[message.from.id]["report"] == true or
 	     status[message.from.id]["reportname"] == true or
 		 status[message.from.id]["subscribe"] == true or
@@ -108,11 +108,11 @@ Invia l'username, il nome o l'ID della persona o del gruppo che vuoi segnalare}
 		
 	  end
 	  
-	when /\/canale/i
+	when /^\/canale/i
 	  reply.text = %{Questo è il canale con le ultime nostre news:
 #{channellink}}
 
-	when /\/iscriviti/i
+	when /^\/iscriviti/i
 	  if status[message.from.id]["subscribe"] == true or
 	     status[message.from.id]["subscribelink"] == true or
 		 status[message.from.id]["subscribeadm"] == true or
@@ -128,7 +128,7 @@ Invia il nome del gruppo che vuoi proporre all'attenzione dello IATA.}
 		  status[message.from.id]["subscribe"] = true
 	  end
 	  
-	when /\//i
+	when /^\//i
 	  reply.text = "Comando sconosciuto."
 	  
     else
