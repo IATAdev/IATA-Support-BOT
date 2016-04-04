@@ -80,7 +80,7 @@ bot.get_updates(fail_silently: true) do |message|
 	  
 	when /\/setchan/i
 	  begin
-	    if admins[message.from.id] = true then
+	    if admins[message.from.id] == true then
 	      File.open('channel.conf', 'w') {|f| f.write(YAML.dump(message.chat))}
 	      channel = message.chat
 	      reply.text = "Fatto."
