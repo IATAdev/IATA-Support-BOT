@@ -1,4 +1,4 @@
-# IATAreportbot v0.1
+# IATAreportbot v0.2
 # Copyright (c) 2016, Italian Administrators Telegram Alliance
 # All rights reserved.
 # 
@@ -36,6 +36,7 @@ channellink = "INSERIRE IL LINK AL CANALE NEWS QUI"
 
 channel = YAML.load(File.read('channel.conf')) rescue nil
 admins = YAML.load(File.read('admins.conf')) rescue nil
+userinfo = YAML.load(File.read('userinfo.list')) rescue Hash.new
 status = Hash.new
 
 bot.get_updates(fail_silently: true) do |message|
@@ -45,12 +46,25 @@ bot.get_updates(fail_silently: true) do |message|
 	status[message.from.id] = Hash.new
   end
   
+  if userinfo[message.from.id] == nil then
+	userinfo[message.from.id] = Hash.new
+	userinfo[message.from.id]["malus"] = 0
+	userinfo[message.from.id]["banned"] = false
+	File.open('userinfo.list', 'w') {|f| f.write(YAML.dump(userinfo))}
+  end
+  
   if message.from.username == nil then
     status[message.from.id]["username"] = message.from.first_name + " " + message.from.last_name + " [" + message.from.id.to_s + "]" 
   else
     status[message.from.id]["username"] = message.from.username + " [" + message.from.id.to_s + "]"
   end
   
+  if userinfo[message.from.id]["malus"] > 6 then
+    userinfo[message.from.id]["banned"] = true
+  end
+  
+  next if (userinfo[message.from.id]["banned"] == true)?
+    
   message.reply do |reply|
     case command
 	when /^\/start/i
@@ -58,13 +72,14 @@ bot.get_updates(fail_silently: true) do |message|
 /report - Segnala l'abuso di una persona/bot/chat
 /iscriviti - Proponi il tuo gruppo per essere incluso nello IATA
 /canale - Ottieni il link con le ultime news}
-
+      userinfo[message.from.id]["malus"] += 1
 	when /^\/addadmin/i
 	  if admins == nil then
 	    admins = Hash.new
 		admins[message.from.id] = true
 		reply.text = "Lista degli admin inizializzata. Sei stato aggiunto come primo admin."
 		File.open('admins.conf', 'w') {|f| f.write(YAML.dump(admins))}
+		userinfo[message.from.id]["malus"] = 0
 	  else
 	    begin
 	      if admins[message.from.id] == true then
@@ -72,6 +87,7 @@ bot.get_updates(fail_silently: true) do |message|
 		    reply.text = "Inserisci l'ID dell'amministratore da aggiungere."
 		  else
 		    reply.text = "Non sei autorizzato ad usare questo comando."
+			userinfo[message.from.id]["malus"] += 4
 		  end
 		rescue
 		  reply.text = "La struttura degli admin non è ancora stata inizializzata."
@@ -84,8 +100,10 @@ bot.get_updates(fail_silently: true) do |message|
 	      File.open('channel.conf', 'w') {|f| f.write(YAML.dump(message.chat))}
 	      channel = message.chat
 	      reply.text = "Fatto."
+		  userinfo[message.from.id]["malus"] = 0
 	    else
 	      reply.text = "Non sei autorizzato ad usare questo comando."
+		  userinfo[message.from.id]["malus"] += 4
 	    end
 	  rescue
 		reply.text = "La struttura degli admin non è ancora stata inizializzata."
@@ -101,6 +119,7 @@ bot.get_updates(fail_silently: true) do |message|
 		 status[message.from.id]["subscribereason"] == true then
 		 
 	    reply.text = "C'è un'altra tua segnalazione in corso. Completa l'altra prima."
+		userinfo[message.from.id]["malus"] += 3
 	  else
         reply.text = %{Ciao, #{message.from.first_name}!
 Invia l'username, il nome o l'ID della persona o del gruppo che vuoi segnalare}
@@ -111,7 +130,7 @@ Invia l'username, il nome o l'ID della persona o del gruppo che vuoi segnalare}
 	when /^\/canale/i
 	  reply.text = %{Questo è il canale con le ultime nostre news:
 #{channellink}}
-
+      userinfo[message.from.id]["malus"] += 1
 	when /^\/iscriviti/i
 	  if status[message.from.id]["subscribe"] == true or
 	     status[message.from.id]["subscribelink"] == true or
@@ -122,11 +141,41 @@ Invia l'username, il nome o l'ID della persona o del gruppo che vuoi segnalare}
 	     status[message.from.id]["reportname"] == true then
 		 
 	    reply.text = "C'è un'altra tua segnalazione in corso. Completa l'altra prima."
+		userinfo[message.from.id]["malus"] += 3
 	  else
 		  reply.text = %{Ciao, #{message.from.first_name}!
 Invia il nome del gruppo che vuoi proporre all'attenzione dello IATA.}
 		  status[message.from.id]["subscribe"] = true
 	  end
+	  
+	when /^\/ban (.*)/i
+	  if admins[message.from.id] == true then
+        if userinfo[match[0]] == nil then
+	      userinfo[match[0]] = Hash.new
+	      userinfo[match[0]]["malus"] = 0
+	      userinfo[match[0]]["banned"] = false
+        end
+	    userinfo[match[0]]["banned"] = true
+		reply.text = "Utente aggiunto con successo ai bloccati."
+	  else
+		reply.text = "Non sei autorizzato ad utilizzare questo comando."
+		userinfo[message.from.id]["malus"] += 4
+	  end
+	  
+	when /^\/unban (.*)/i
+	  if admins[message.from.id] == true then
+        if userinfo[match[0]] == nil then
+	      userinfo[match[0]] = Hash.new
+	      userinfo[match[0]]["malus"] = 0
+	      userinfo[match[0]]["banned"] = false
+        end
+	    userinfo[match[0]]["banned"] = false
+		userinfo[match[0]]["malus"] = 0
+		reply.text = "Utente rimosso con successo dai bloccati."
+	  else
+		reply.text = "Non sei autorizzato ad utilizzare questo comando."
+		userinfo[message.from.id]["malus"] += 4
+	  end  
 	  
 	when /^\//i
 	  reply.text = "Comando sconosciuto."
@@ -139,6 +188,7 @@ Invia il nome del gruppo che vuoi proporre all'attenzione dello IATA.}
 		  File.open('admins.conf', 'w') {|f| f.write(YAML.dump(admins))}
 		  reply.text = "Aggiunto l'id #{message.text} agli amministratori."
 		  status[message.from.id]["addadmin"] = false
+		  userinfo[message.from.id]["malus"] = 0
 		rescue 
 		  reply.text = "L'ID non è valido! Riprova ad inviarlo."
 		end
@@ -156,6 +206,7 @@ Segnalato: #{status[message.from.id]["reportedname"]}
 Motivazione: #{status[message.from.id]["reportedreason"]}}))
 
 		status[message.from.id]["report"] = false
+		userinfo[message.from.id]["malus"] = 0
 	  end
 	  
 	  if status[message.from.id]["report"] == true then
@@ -181,6 +232,7 @@ Autovalutazione: #{status[message.from.id]["subscribedval"]}
 Descrizione: #{status[message.from.id]["subscribedreason"]}}))
 
 		status[message.from.id]["subscribe"] = false
+		userinfo[message.from.id]["malus"] = 0
 	  end
 	  
 	  if status[message.from.id]["subscribeval"] == true then
