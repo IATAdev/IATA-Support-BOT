@@ -25,7 +25,7 @@ Questa è la lista:
 ##Prerequisiti
 **Devi** avere una versione di Ruby recente (testato su 2.1.5).
 
-**Devi** aver installato le gems [telegram_bot](https://github.com/eljojo/telegram_bot) e YAML.
+**Devi** aver installato le gems [telegram-bot-ruby](https://github.com/atipugin/telegram-bot-ruby) e YAML.
 
 **Prima di eseguirlo:**
 
