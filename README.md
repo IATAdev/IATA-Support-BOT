@@ -1,16 +1,18 @@
-#IATA Support BOT (deprecato)
+# IATA Support BOT (deprecato)
 **Questo bot verrà sostituito dal nuovo [iata-bot](https://github.com/IATAdev/IATA-bot)**
+
+**Il 4 settembre 2016 IATA ha cessato le sue attività, il bot non è più disponibile, ma i sorgenti resteranno pubblici e rilasciati sotto licenza BSD-2-Clause**
 
 Questo bot è stato creato per ovviare a delle funzioni amministrative all'interno dello IATA.
 
 Questo software è coperto da licenza BSD semplificata (a-là FreeBSD) consultabile dal sorgente del bot stesso: [iatabot.rb](https://github.com/IATAdev/IATA-Support-BOT/blob/master/iatabot.rb).
 
-##A cosa serve?
+## A cosa serve?
 IATA Support BOT è un bot Telegram API scritto in Ruby. Tiene conto delle segnalazioni degli utenti in caso di abuso, accetta le richieste di aggiunta di un gruppo nello IATA oppure restituisce il link del canale delle notizie.
 
 * * *
 
-##Comandi previsti
+## Comandi previsti
 Questa è la lista:
 
 | Comando | Funzione |
@@ -24,7 +26,7 @@ Questa è la lista:
 
 * * *
 
-##Prerequisiti
+## Prerequisiti
 **Devi** avere una versione di Ruby recente (testato su 2.1.5).
 
 **Devi** aver installato le gems [telegram-bot-ruby](https://github.com/atipugin/telegram-bot-ruby) e YAML.
@@ -41,9 +43,9 @@ Per eseguire il bot, avvia `./iatabot.sh`. Per fermarlo, dai due volte CTRL+C.
 
 Puoi anche eseguirlo con `ruby iatabot.rb`, ma in caso di errore non si riavvierà da solo.
 
-##Sviluppatori
+## Sviluppatori
 Chiunque può contribuire a questo progetto.
 
-Il bot è sviluppato da [LucentW](https://github.com/LucentW). Puoi conttarlo via [Telegram](https://telegram.me/LucentW), [Twitter](https://twitter.com/lucentw), o su IRC (irc.darkspirit.org, irc.azzurra.org) dove lo troverai con il nick Lucent.
+Il bot è sviluppato da [LucentW](https://github.com/LucentW). Puoi conttarlo via [Telegram](https://t.me/LucentW), [Twitter](https://twitter.com/lucentw), o su IRC (irc.darkspirit.org, irc.azzurra.org) dove lo troverai con il nick Lucent.
 
-Per altre informazioni, contattare il responsabile del progetto [lollofra](https://github.com/lollofra) via [Telegram](https://telegram.me/lollofra) o [Twitter](https://twitter.com/Lorenzo_Fiocco).
+Per altre informazioni, contattare il responsabile del progetto [Lorenzo Fiocco](https://github.com/lollofra) via [Telegram](https://t.me/Lorenzo) o [Twitter](https://twitter.com/Lorenzo_Fiocco).
